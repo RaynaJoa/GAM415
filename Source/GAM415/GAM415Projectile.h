@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class UProjectileMovementComponent;
+class UNiagaraSystem;
 
 UCLASS(config=Game)
 class AGAM415Projectile : public AActor
@@ -42,6 +43,10 @@ private:
 	//Creating material dynamic for projectile
 	UPROPERTY()
 		UMaterialInstanceDynamic* dmiMat;
+
+	//Creating partacles affect after shooting
+	UPROPERTY(EditAnywhere)
+		UNiagaraSystem* colorP;
 
 
 public:
