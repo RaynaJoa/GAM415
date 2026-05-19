@@ -14,6 +14,7 @@ class AGAM415Projectile : public AActor
 {
 	GENERATED_BODY()
 
+private:
 	/** Sphere collision component */
 	UPROPERTY(VisibleDefaultsOnly, Category=Projectile)
 	USphereComponent* CollisionComp;
@@ -22,9 +23,35 @@ class AGAM415Projectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+	//Creating ball mesh to be used for coding
+	UPROPERTY(EditAnywhere)
+		UStaticMeshComponent* ballMesh;
+
+	//Creating the material for the ball mesh to be used
+	UPROPERTY(EditAnywhere)
+		UMaterial* baseMat;
+
+	//To call random color before direct hit
+	UPROPERTY()
+		FLinearColor randColor;
+
+	//Creating projectile material 
+	UPROPERTY(EditAnywhere)
+		UMaterialInterface* projMat;
+
+	//Creating material dynamic for projectile
+	UPROPERTY()
+		UMaterialInstanceDynamic* dmiMat;
+
+
 public:
 	AGAM415Projectile();
 
+	//Implemented begin play function
+protected:
+	virtual void BeginPlay();
+
+public:
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
